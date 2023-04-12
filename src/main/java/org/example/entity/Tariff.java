@@ -1,9 +1,12 @@
 package org.example.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "tariffs")
+@Data
 public class Tariff {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")

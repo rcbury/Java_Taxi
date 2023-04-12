@@ -1,8 +1,11 @@
 package org.example.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity(name="drivers")
+@Data
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")

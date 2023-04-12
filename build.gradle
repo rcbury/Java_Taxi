@@ -26,6 +26,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.8'
     implementation 'org.hibernate:hibernate-core:5.6.15.Final'
     implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    implementation 'org.liquibase:liquibase-core:4.20.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.5'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
 
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 }
