@@ -9,6 +9,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/application" />
+            <option value="$PROJECT_DIR$/taxi-api" />
+            <option value="$PROJECT_DIR$/taxi-data" />
+            <option value="$PROJECT_DIR$/taxi-domain" />
           </set>
         </option>
       </GradleProjectSettings>

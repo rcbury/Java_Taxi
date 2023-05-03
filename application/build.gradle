@@ -1,0 +1,14 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+compileJava.dependsOn(processResources)
+
+dependencies {
+    implementation project(':taxi-api')
+    implementation project(':taxi-data')
+    implementation project(':taxi-domain')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+}

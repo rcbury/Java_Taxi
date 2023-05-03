@@ -1,41 +1,58 @@
 plugins {
+    id 'org.springframework.boot' version '2.5.0' apply false
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
+    id 'io.freefair.lombok' version '6.0.0-m2' apply false
+    id 'idea'
     id 'application'
-    id 'java'
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
 
 
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'io.freefair.lombok'
 
-repositories {
-    mavenCentral()
-}
+    repositories {
+        mavenCentral()
+    }
 
-application {
-    mainClass = 'org.example.Main'
-}
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
 
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.8'
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.8'
-    implementation 'org.hibernate:hibernate-core:5.6.15.Final'
-    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
-    implementation 'org.liquibase:liquibase-core:4.20.0'
-    compileOnly 'org.projectlombok:lombok:1.18.26'
-    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.26'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+    ext {
+        analytic_starter_version = "1.0.7"
+        spring_boot_version = "2.7.8"
+        lombok_version = "1.18.26"
+        mapstruct_version = "1.5.3.Final"
+        liquibase_version = "4.20.0"
+        jupiter_version = "5.8.1"
+        junit_version = "5.9.1"
+        postgres_version = "42.5.4"
+        hibernate_version = "5.6.15.Final"
+        commons_collections_version = "4.0"
 
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
-}
+    }
 
-test {
-    useJUnitPlatform()
+
+    dependencyManagement {
+        dependencies {
+            dependency group: 'org.apache.commons', name: 'commons-collections4', version: "${commons_collections_version}"
+            dependency "org.springframework.boot:spring-boot-starter-web:${spring_boot_version}"
+            dependency group: 'org.postgresql', name: 'postgresql', version: "${postgres_version}"
+            dependency "org.springframework.boot:spring-boot-starter-data-jpa:${spring_boot_version}"
+            dependency "org.hibernate:hibernate-core:${hibernate_version}"
+
+            dependency "org.liquibase:liquibase-core:${liquibase_version}"
+
+            dependency "org.projectlombok:lombok:${lombok_version}"
+
+            dependency "org.mapstruct:mapstruct-processor:${mapstruct_version}"
+            dependency "org.mapstruct:mapstruct:${mapstruct_version}"
+        }
+    }
 }

@@ -1,2 +1,6 @@
 rootProject.name = 'TaxiBackend'
+include 'taxi-api'
+include 'taxi-domain'
+include 'taxi-data'
+include 'application'
 
