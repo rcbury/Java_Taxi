@@ -3,7 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation project(':taxi-data')
     implementation group: 'org.apache.commons', name: 'commons-collections4'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 

@@ -3,12 +3,13 @@ plugins {
 }
 
 dependencies {
+    implementation project(':taxi-domain')
+
     implementation group: 'org.apache.commons', name: 'commons-collections4'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'org.postgresql', name: 'postgresql'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.hibernate:hibernate-core'
-
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
