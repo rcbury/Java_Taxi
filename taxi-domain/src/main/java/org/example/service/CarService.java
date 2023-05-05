@@ -1,17 +1,14 @@
 package org.example.service;
 
 
-import org.example.dto.CarDto;
-import org.example.repository.CarRepository;
+import org.example.repository.ICarRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CarService {
-    private CarRepository carRepository;
+    private ICarRepository carRepository;
 
-    public CarService(CarRepository carRepository){
+    public CarService(ICarRepository carRepository){
         this.carRepository = carRepository;
     }
 

@@ -5,12 +5,10 @@ import org.example.entity.Car;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CarRepository {
+public class CarRepository implements ICarRepository {
     private EntityManager entityManager;
     public CarRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
