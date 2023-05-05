@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test-db
+    username: postgres
+    password: postgres
+    driveClassName: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+  liquibase:
+    changeLog: classpath:master.xml
+    url: jdbc:postgresql://localhost:5432/test-db
+    user: postgres
+    password: postgres

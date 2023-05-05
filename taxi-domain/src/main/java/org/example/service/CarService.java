@@ -6,13 +6,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CarService {
-<<<<<<< Updated upstream
-=======
-    private ICarRepository carRepository;
+//    private ICarRepository carRepository;
 
-    public CarService(ICarRepository carRepository){
-        this.carRepository = carRepository;
-    }
->>>>>>> Stashed changes
+//    public CarService(ICarRepository carRepository){
+//        this.carRepository = carRepository;
+//    }
 }
 */

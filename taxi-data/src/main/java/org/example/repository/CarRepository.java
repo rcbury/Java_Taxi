@@ -94,6 +94,4 @@ public class CarRepository {
     {
         carDao.deleteById(id);
     }
-
-
 }
