@@ -34,8 +34,8 @@ public class Order {
     private OrderStatus status;
 
     @ManyToOne
-    @JoinColumn(name="car_id")
-    private Car car;
+    @JoinColumn(name="driver_id")
+    private Driver driver;
 
     @ManyToOne
     @JoinColumn(name="user_id")

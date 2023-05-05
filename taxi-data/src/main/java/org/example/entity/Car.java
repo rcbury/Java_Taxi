@@ -11,19 +11,14 @@ public class Car {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name="driver_id", referencedColumnName = "id")
-    private Driver driver;
-
     @Column(name="plate_number")
     private String plateNumber;
 
     @Column(name="description")
     private String description;
 
-    @ManyToOne()
-    @JoinColumn(name="status_id")
-    private CarStatus status;
+    @OneToOne(mappedBy = "car")
+    private Driver currentDriver;
 
     @ManyToOne()
     @JoinColumn(name="type_id")

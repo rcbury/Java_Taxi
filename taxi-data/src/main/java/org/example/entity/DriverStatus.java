@@ -4,9 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity(name="car_statuses")
+@Entity(name="driver_statuses")
 @Data
-public class CarStatus {
+public class DriverStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
     @Column(name = "id", nullable = false)

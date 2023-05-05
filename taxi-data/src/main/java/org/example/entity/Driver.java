@@ -18,7 +18,11 @@ public class Driver {
     @Column(name="license_number")
     private String licenseNumber;
 
-    @OneToOne(mappedBy = "driver")
-    private Car currentCar;
+    @OneToOne
+    @JoinColumn(name="car_id", referencedColumnName = "id")
+    private Car car;
 
+    @ManyToOne()
+    @JoinColumn(name="status_id")
+    private DriverStatus status;
 }
