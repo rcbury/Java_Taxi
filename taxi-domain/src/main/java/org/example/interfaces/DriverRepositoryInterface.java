@@ -1,6 +1,5 @@
 package org.example.interfaces;
 
-import org.example.dto.CarDto;
 import org.example.dto.DriverDto;
 
 import java.util.List;

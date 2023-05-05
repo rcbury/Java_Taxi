@@ -1,8 +1,6 @@
 package org.example.service;
 
-import org.example.dto.CarDto;
 import org.example.dto.DriverDto;
-import org.example.interfaces.CarRepositoryInterface;
 import org.example.interfaces.DriverRepositoryInterface;
 import org.springframework.stereotype.Service;
 

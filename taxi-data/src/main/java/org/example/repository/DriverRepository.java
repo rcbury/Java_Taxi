@@ -1,15 +1,11 @@
 package org.example.repository;
 
 import org.example.dao.CarDao;
-import org.example.dao.CarTypeDao;
 import org.example.dao.DriverDao;
 import org.example.dao.DriverStatusDao;
-import org.example.dto.CarDto;
 import org.example.dto.DriverDto;
-import org.example.entity.Car;
 import org.example.entity.Driver;
 import org.example.interfaces.DriverRepositoryInterface;
-import org.example.mappers.CarMapper;
 import org.example.mappers.DriverMapper;
 import org.springframework.stereotype.Repository;
 

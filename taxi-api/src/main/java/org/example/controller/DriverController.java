@@ -1,8 +1,6 @@
 package org.example.controller;
 
-import org.example.dto.CarDto;
 import org.example.dto.DriverDto;
-import org.example.service.CarService;
 import org.example.service.DriverService;
 import org.springframework.web.bind.annotation.*;
 
