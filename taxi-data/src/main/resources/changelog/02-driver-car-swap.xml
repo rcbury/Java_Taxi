@@ -3,9 +3,31 @@
 
     <changeSet author="nikitabykov" id="05-05-2023-cars-1">
         <sql>
-            alter table cars (
-                drop constraint fkd2p23ixwrrt395glgi9nnbj23;
-            );
+            alter table cars drop constraint fk1vcba8tae6ba90ij80bkcfjns;
+            alter table cars drop constraint fks0dcjp3mjm2pn9435ey8ba0w4;
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="05-05-2023-orders-1">
+        <sql>
+            alter table orders
+                drop constraint fkd2p23ixwrrt395glgi9nnbj23,
+                drop column car_id,
+                add column driver_id bigint,
+                add constraint order_driver_id_fk foreign key (driver_id) references drivers(id);
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="05-05-2023-car-statuses-1">
+        <sql>
+            alter table car_statuses rename to driver_statuses;
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="05-05-2023-drivers-1">
+        <sql>
+            alter table drivers
+                add column car_id bigint,
+                add constraint driver_car_id_fk foreign key (car_id) references cars(id),
+                add column status_id bigint,
+                add constraint driver_driver_status_id_fk foreign key (status_id) references driver_statuses(id);
         </sql>
     </changeSet>
 </databaseChangeLog>
