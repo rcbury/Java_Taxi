@@ -5,7 +5,7 @@ import org.example.entity.Driver;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel="spring")
 public interface DriverMapper {
     DriverMapper INSTANCE = Mappers.getMapper( DriverMapper.class );
     DriverDto toDto(Driver driver);
