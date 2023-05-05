@@ -8,7 +8,6 @@ public class CarDto {
     private Long driverId;
     private String plateNumber;
     private String description;
-    private Long statusId;
     private Long typeId;
 
 }
