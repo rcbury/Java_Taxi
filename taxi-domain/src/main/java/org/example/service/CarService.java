@@ -12,14 +12,6 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-//    public CarDto addCar(CarDto carDto){
-//        var addedCar = carRepository.addCar(carDto);
-//        return addedCar;
-//    }
 
-//    public List<CarDto> getCars(){
-//        var carList = carRepository.getAll();
-//        return carList;
-//    }
 
 }
