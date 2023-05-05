@@ -8,6 +8,7 @@ import org.example.dto.CarDto;
 import org.example.dto.DriverDto;
 import org.example.entity.Car;
 import org.example.entity.Driver;
+import org.example.interfaces.DriverRepositoryInterface;
 import org.example.mappers.CarMapper;
 import org.example.mappers.DriverMapper;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class DriverRepository {
+public class DriverRepository implements DriverRepositoryInterface {
     private CarDao carDao;
     private DriverDao driverDao;
     private DriverStatusDao driverStatusDao;
