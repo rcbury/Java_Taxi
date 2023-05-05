@@ -54,6 +54,7 @@ public class UserRepository implements UserRepositoryInterface {
             findUser.setLastName(userUpdate.getLastName());
             findUser.setOrders(userUpdate.getOrders());
             findUser.setEmail(userUpdate.getEmail());
+            userDao.save(findUser);
 
             return mapper.toDto(findUser);
         } else {
