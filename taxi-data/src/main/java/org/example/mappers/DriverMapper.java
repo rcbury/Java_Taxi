@@ -9,5 +9,5 @@ import org.mapstruct.factory.Mappers;
 public interface DriverMapper {
     DriverMapper INSTANCE = Mappers.getMapper( DriverMapper.class );
     DriverDto toDto(Driver driver);
-    Driver toEntity(DriverDto carDto);
+    Driver toEntity(DriverDto driverDto);
 }
