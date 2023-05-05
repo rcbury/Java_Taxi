@@ -21,7 +21,7 @@ public class UserService {
     public UserDto getById(Long id) {
         return repository.getById(id);
     }
-    public UserDto update(UserDto userUpdateDto) {
-        return repository.update(userUpdateDto);
+    public UserDto update(Long id, UserDto userUpdateDto) {
+        return repository.update(id, userUpdateDto);
     }
 }

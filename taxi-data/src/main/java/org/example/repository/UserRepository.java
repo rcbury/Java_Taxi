@@ -42,8 +42,8 @@ public class UserRepository implements UserRepositoryInterface {
         }
     }
 
-    public UserDto update(UserDto userUpdateDto) {
-        Optional<User> findUsers = userDao.findById(userUpdateDto.getId());
+    public UserDto update(Long id, UserDto userUpdateDto) {
+        Optional<User> findUsers = userDao.findById(id);
 
         if (findUsers.isPresent()) {
             User findUser = findUsers.get();
