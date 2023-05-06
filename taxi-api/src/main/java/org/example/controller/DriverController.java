@@ -80,7 +80,7 @@ public class DriverController {
     public double getMoney(@RequestParam Long driverId,
                            @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
         var response = driverService.getSalary(driverId, date);
-        
+
         return response;
     }
 }

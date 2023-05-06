@@ -60,7 +60,7 @@ public class OrderRepository implements org.example.repository.interfaces.OrderR
 
     public List<OrderDto> getFinishedOrders(Long driverId, Date endDate)
     {
-        var orders = orderDao.findByStatusIdAndDriverIdAndEndDate(OrderStatus.ARRIVED_TO_DESTINATION.getIndex(),
+        var orders = orderDao.findByStatusIdAndDriverIdAndEndTime(OrderStatus.ARRIVED_TO_DESTINATION.getIndex(),
                 driverId, endDate);
 
         var ordersDto = new ArrayList<OrderDto>();
