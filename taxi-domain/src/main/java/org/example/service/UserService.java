@@ -1,14 +1,14 @@
 package org.example.service;
 
 import org.example.dto.UserDto;
-import org.example.interfaces.UserRepositoryInterface;
+import org.example.repository.interfaces.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    UserRepositoryInterface repository;
+    UserRepository repository;
 
-    UserService(UserRepositoryInterface repository) {
+    UserService(UserRepository repository) {
         this.repository = repository;
     }
 

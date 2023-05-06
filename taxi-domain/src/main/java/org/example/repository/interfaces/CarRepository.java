@@ -1,10 +1,10 @@
-package org.example.interfaces;
+package org.example.repository.interfaces;
 
 import org.example.dto.CarDto;
 
 import java.util.List;
 
-public interface CarRepositoryInterface {
+public interface CarRepository {
     public CarDto create(CarDto carDto);
     public void delete(Long id);
     public CarDto getById(Long id);

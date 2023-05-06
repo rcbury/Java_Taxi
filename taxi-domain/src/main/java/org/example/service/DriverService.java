@@ -1,16 +1,16 @@
 package org.example.service;
 
 import org.example.dto.DriverDto;
-import org.example.interfaces.DriverRepositoryInterface;
+import org.example.repository.interfaces.DriverRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class DriverService {
-    DriverRepositoryInterface repository;
+    DriverRepository repository;
 
-    DriverService(DriverRepositoryInterface repository) {
+    DriverService(DriverRepository repository) {
         this.repository = repository;
     }
 

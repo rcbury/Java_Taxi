@@ -5,7 +5,6 @@ import org.example.dao.DriverDao;
 import org.example.dao.DriverStatusDao;
 import org.example.dto.DriverDto;
 import org.example.entity.Driver;
-import org.example.interfaces.DriverRepositoryInterface;
 import org.example.mappers.DriverMapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class DriverRepository implements DriverRepositoryInterface {
+public class DriverRepository implements org.example.repository.interfaces.DriverRepository {
     private CarDao carDao;
     private DriverDao driverDao;
     private DriverStatusDao driverStatusDao;

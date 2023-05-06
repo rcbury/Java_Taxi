@@ -3,14 +3,13 @@ package org.example.repository;
 import org.example.dao.UserDao;
 import org.example.dto.UserDto;
 import org.example.entity.User;
-import org.example.interfaces.UserRepositoryInterface;
 import org.example.mappers.UserMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public class UserRepository implements UserRepositoryInterface {
+public class UserRepository implements org.example.repository.interfaces.UserRepository {
     UserDao userDao;
     UserMapper mapper;
 
