@@ -1,15 +1,17 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/test-db
+    url: jdbc:postgresql://localhost:5432/taxi-backend
+    password: admin
     username: postgres
-    password: postgres
     driveClassName: org.postgresql.Driver
+
   jpa:
     database: postgresql
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
+
   liquibase:
     changeLog: classpath:master.xml
-    url: jdbc:postgresql://localhost:5432/test-db
+    url: jdbc:postgresql://localhost:5432/taxi-backend
     user: postgres
-    password: postgres
+    password: admin
