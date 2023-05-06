@@ -2,8 +2,10 @@ package org.example.controller;
 
 import org.example.dto.DriverDto;
 import org.example.service.DriverService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
@@ -58,6 +60,27 @@ public class DriverController {
     public List<DriverDto> getFreeDrivers() {
         var response = driverService.getFreeDrivers();
 
+        return response;
+    }
+
+    @RequestMapping(value = "/online", method = GET)
+    @PutMapping
+    public void sendOnLine(@RequestParam Long driverId) {
+        driverService.sendOnLine(driverId);
+    }
+
+    @RequestMapping(value = "/offline", method = GET)
+    @PutMapping
+    public void sendOffLine(@RequestParam Long driverId) {
+        driverService.sendOffLine(driverId);
+    }
+
+    @RequestMapping(value = "/money", method = GET)
+    @GetMapping
+    public double getMoney(@RequestParam Long driverId,
+                           @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
+        var response = driverService.getSalary(driverId, date);
+        
         return response;
     }
 }

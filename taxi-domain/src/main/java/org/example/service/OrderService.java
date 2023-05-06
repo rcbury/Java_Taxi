@@ -1,7 +1,9 @@
 package org.example.service;
 
 import org.example.Exceptions.InvalidOrderOperationException;
+import org.example.dto.DriverDto;
 import org.example.dto.OrderDto;
+import org.example.enums.DriverStatus;
 import org.example.enums.OrderStatus;
 import org.example.repository.interfaces.DriverRepository;
 import org.example.repository.interfaces.OrderRepository;
@@ -17,6 +19,8 @@ public class OrderService {
     OrderRepository orderRepository;
     DriverRepository driverRepository;
     static final Long rubPerMinute = 20l;
+
+    static final Long rubPerRide = 50l;
 
     public OrderService(OrderRepository orderRepository, DriverRepository driverRepository){
         this.orderRepository = orderRepository;
@@ -107,11 +111,15 @@ public class OrderService {
 
         var rideMinutes = (existingOrder.getEndTime().getTime() - existingOrder.getStartTime().getTime()) / 1000 / 60;
 
-        var price = rideMinutes * rubPerMinute * existingOrder.getPriceMultiplier();
+        var price = rubPerRide + rideMinutes * rubPerMinute * existingOrder.getPriceMultiplier();
 
         existingOrder.setPrice(price);
 
         var updatedOrder = orderRepository.updateOrder(existingOrder);
+
+        var driver = driverRepository.getById(updatedOrder.getDriverId());
+
+        FreeDriver(driver);
 
         return updatedOrder;
     }
@@ -123,6 +131,16 @@ public class OrderService {
 
         var updatedOrder = orderRepository.updateOrder(existingOrder);
 
+        var driver = driverRepository.getById(updatedOrder.getDriverId());
+
+        FreeDriver(driver);
+
         return updatedOrder;
+    }
+
+    private void FreeDriver(DriverDto driver)
+    {
+        driver.setStatusId(DriverStatus.AVAILABLE.getIndex());
+        driverRepository.update(driver);
     }
 }

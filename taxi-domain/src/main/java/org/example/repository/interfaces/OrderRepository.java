@@ -2,6 +2,7 @@ package org.example.repository.interfaces;
 
 import org.example.dto.OrderDto;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrderRepository {
@@ -10,4 +11,5 @@ public interface OrderRepository {
     OrderDto getById(Long id) throws Exception;
 
     List<OrderDto> getAll();
+    List<OrderDto> getFinishedOrders(Long driverId, Date endDate);
 }
