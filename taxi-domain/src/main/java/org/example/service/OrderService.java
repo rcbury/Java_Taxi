@@ -5,6 +5,7 @@ import org.example.repository.interfaces.DriverRepository;
 import org.example.repository.interfaces.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,12 +34,16 @@ public class OrderService {
     public OrderDto assignDriver(Long orderId, Long driverId) throws Exception {
         var existingOrder = orderRepository.getById(orderId);
 
+        if (existingOrder.getStatusId() == 1L){
+
+        }
+
         var existingDriver = driverRepository.getById(driverId);
 
         existingOrder.setDriverId(existingDriver.getId());
-        existingOrder.setStatusId(2l);
+        existingOrder.setStatusId(2L);
 
-        existingDriver.setStatusId(2l);
+        existingDriver.setStatusId(2L);
 
         var updatedOrder = orderRepository.updateOrder(existingOrder);
 
@@ -47,20 +52,22 @@ public class OrderService {
         return updatedOrder;
     }
 
-    public OrderDto driverArrived(OrderDto newOrder) throws Exception {
-        var existingOrder = orderRepository.getById(newOrder.getId());
+    public OrderDto driverArrived(Long orderId) throws Exception {
+        var existingOrder = orderRepository.getById(orderId);
 
-        existingOrder.setStatusId(3l);
+        existingOrder.setStatusId(6L);
 
         var updatedOrder = orderRepository.updateOrder(existingOrder);
 
         return updatedOrder;
     }
 
-    public OrderDto startRide(OrderDto newOrder) throws Exception {
-        var existingOrder = orderRepository.getById(newOrder.getId());
+    public OrderDto startRide(Long orderId) throws Exception {
+        var existingOrder = orderRepository.getById(orderId);
+        var currentDate = new Date();
 
-        existingOrder.setStatusId(3l);
+        existingOrder.setStatusId(3L);
+        existingOrder.setStartTime(currentDate);
 
         var updatedOrder = orderRepository.updateOrder(existingOrder);
 
