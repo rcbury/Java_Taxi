@@ -58,7 +58,17 @@ public class OrderRepository implements org.example.repository.interfaces.OrderR
     }
 
     @Override
-    public OrderDto updateOrder(OrderDto orderDto) {
-        return null;
+    public OrderDto updateOrder(OrderDto orderDto) throws Exception {
+        var existingOrderEntity = orderDao.findById(orderDto.getId());
+
+        if (existingOrderEntity.isEmpty()) {
+            throw new Exception("trying to update model that does not exist");
+        }
+
+        var updatedOrderEntity = orderMapper.toEntity(orderDto);
+
+        orderDao.save(updatedOrderEntity);
+
+        return orderMapper.toDto(updatedOrderEntity);
     }
 }

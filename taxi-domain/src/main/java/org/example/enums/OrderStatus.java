@@ -7,7 +7,8 @@ public enum OrderStatus {
     DRIVING_TO_CLIENT (2L, "Водитель в пути до клиента"),
     DRIVING_TO_DESTINATION (3L, "Водитель в пути до места назначения"),
     ARRIVED_TO_DESTINATION (4L, "Водитель прибыл до места назначения"),
-    CANCELLED (5L, "Заказ отменен");
+    CANCELLED (5L, "Заказ отменен"),
+    ARRIVED_TO_CLIENT (6L, "Водитель прибыл до места отправления");
 
     private String title;
     private Long value;

@@ -9,7 +9,7 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
-@RequestMapping("api/drivers")
+@RequestMapping("api/v1/drivers")
 public class DriverController {
     private DriverService driverService;
 
