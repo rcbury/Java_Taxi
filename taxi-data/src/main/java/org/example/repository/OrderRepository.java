@@ -6,6 +6,7 @@ import org.example.dto.OrderDto;
 import org.example.entity.Car;
 import org.example.entity.Order;
 import org.example.mappers.OrderMapper;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -22,13 +23,13 @@ public class OrderRepository implements org.example.repository.interfaces.OrderR
         this.orderMapper = orderMapper;
     }
 
-    public OrderDto getById(Long id){
+    public OrderDto getById(Long id) throws Exception {
         var order = orderDao.findById(id);
-        if (order.isPresent()){
-            return orderMapper.toDto(order.get());
+        if (order.isEmpty()){
+            throw new Exception("not found");
         }
 
-        return new OrderDto();
+        return orderMapper.toDto(order.get());
     }
 
     public List<OrderDto> getAll()
@@ -54,5 +55,10 @@ public class OrderRepository implements org.example.repository.interfaces.OrderR
         orderDao.save(orderEntity);
         
         return orderMapper.toDto(orderEntity);
+    }
+
+    @Override
+    public OrderDto updateOrder(OrderDto orderDto) {
+        return null;
     }
 }
