@@ -12,6 +12,7 @@ import java.util.List;
 public class OrderService {
     OrderRepository orderRepository;
     DriverRepository driverRepository;
+    static final Long rubPerMinute = 2l;
 
     public OrderService(OrderRepository orderRepository){
         this.orderRepository = orderRepository;
@@ -73,6 +74,12 @@ public class OrderService {
 
         existingOrder.setStatusId(5l);
         existingOrder.setEndTime(new Date());
+
+        var rideMinutes = (existingOrder.getEndTime().getTime() - existingOrder.getStartTime().getTime()) / 1000 / 60;
+
+        var salary = rideMinutes * rubPerMinute;
+
+        existingOrder.setPrice(salary);
 
         var updatedOrder = orderRepository.updateOrder(existingOrder);
 
