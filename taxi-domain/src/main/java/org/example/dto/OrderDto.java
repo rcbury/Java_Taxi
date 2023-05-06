@@ -12,6 +12,7 @@ public class OrderDto {
     private Date startTime;
     private Date endTime;
     private Long tariffId;
+    private double priceMultiplier;
     private Long statusId;
     private Long driverId;
     private Long userId;

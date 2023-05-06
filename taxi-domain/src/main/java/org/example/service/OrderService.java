@@ -83,7 +83,7 @@ public class OrderService {
 
         var rideMinutes = (existingOrder.getEndTime().getTime() - existingOrder.getStartTime().getTime()) / 1000 / 60;
 
-        var salary = rideMinutes * rubPerMinute;
+        var salary = rideMinutes * rubPerMinute * existingOrder.getPriceMultiplier();
 
         existingOrder.setPrice(salary);
 
