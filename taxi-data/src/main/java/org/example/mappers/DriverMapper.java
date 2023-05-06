@@ -12,5 +12,5 @@ public interface DriverMapper {
     @Mapping(target = "carId", source = "car.id")
     @Mapping(target = "statusId", source = "status.id")
     DriverDto toDto(Driver driver);
-    Driver toEntity(DriverDto carDto);
+    Driver toEntity(DriverDto driverDto);
 }
