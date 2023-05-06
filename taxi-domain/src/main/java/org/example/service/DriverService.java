@@ -5,6 +5,7 @@ import org.example.repository.interfaces.DriverRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class DriverService {
@@ -29,5 +30,19 @@ public class DriverService {
 
     public List<DriverDto> getAll() {
         return repository.getAll();
+    }
+
+    public List<DriverDto> getFreeDrivers()
+    {
+        var allDrivers = repository.getAll();
+        var freeDrivers = new ArrayList<DriverDto>();
+        for (var driver : allDrivers)
+        {
+            if (driver.getStatusId() == 1)
+            {
+                freeDrivers.add(driver);
+            }
+        }
+        return freeDrivers;
     }
 }

@@ -53,4 +53,12 @@ public class DriverController {
 
         return response;
     }
+
+    @RequestMapping(value = "/free", method = GET)
+    @GetMapping
+    public List<DriverDto> getFreeDrivers() {
+        var response = driverService.getFreeDrivers();
+
+        return response;
+    }
 }
