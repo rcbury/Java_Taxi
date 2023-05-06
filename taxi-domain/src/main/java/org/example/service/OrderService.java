@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.Exceptions.InvalidOrderOperationException;
 import org.example.dto.OrderDto;
 import org.example.repository.interfaces.DriverRepository;
 import org.example.repository.interfaces.OrderRepository;
@@ -32,11 +33,12 @@ public class OrderService {
         return order;
     }
 
-    public OrderDto assignDriver(Long orderId, Long driverId) throws Exception {
+    public OrderDto assignDriver(Long orderId, Long driverId) throws Exception, InvalidOrderOperationException {
         var existingOrder = orderRepository.getById(orderId);
 
-        if (existingOrder.getStatusId() == 1L){
-
+        if (existingOrder.getStatusId() != 1L){
+            throw new InvalidOrderOperationException(
+                    "can only assign driver to an order with waiting for driver status");
         }
 
         var existingDriver = driverRepository.getById(driverId);
@@ -56,6 +58,11 @@ public class OrderService {
     public OrderDto driverArrived(Long orderId) throws Exception {
         var existingOrder = orderRepository.getById(orderId);
 
+        if (existingOrder.getStatusId() != 2L){
+            throw new InvalidOrderOperationException(
+                    "can only use driver arrived with an order with driving to client status");
+        }
+
         existingOrder.setStatusId(6L);
 
         var updatedOrder = orderRepository.updateOrder(existingOrder);
@@ -65,6 +72,12 @@ public class OrderService {
 
     public OrderDto startRide(Long orderId) throws Exception {
         var existingOrder = orderRepository.getById(orderId);
+
+        if (existingOrder.getStatusId() != 3L){
+            throw new InvalidOrderOperationException(
+                    "can only start ride with an order with waiting for client status");
+        }
+
         var currentDate = new Date();
 
         existingOrder.setStatusId(3L);
@@ -77,6 +90,11 @@ public class OrderService {
 
     public OrderDto endRide(Long orderId) throws Exception {
         var existingOrder = orderRepository.getById(orderId);
+
+        if (existingOrder.getStatusId() != 3L){
+            throw new InvalidOrderOperationException(
+                    "can only end ride with an order with driving to destination status");
+        }
 
         existingOrder.setStatusId(5l);
         existingOrder.setEndTime(new Date());
