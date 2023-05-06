@@ -1,10 +1,7 @@
 package org.example.repository;
 
 import org.example.dao.CarDao;
-import org.example.dao.CarTypeDao;
-import org.example.dao.DriverDao;
 import org.example.dto.CarDto;
-import org.example.entity.Car;
 import org.example.mappers.CarMapper;
 import org.springframework.stereotype.Repository;
 
@@ -14,34 +11,17 @@ import java.util.List;
 @Repository
 public class CarRepository implements org.example.repository.interfaces.CarRepository {
     private CarDao carDao;
-    private DriverDao driverDao;
-    private CarTypeDao carTypeDao;
     private CarMapper mapper;
 
-    public CarRepository(CarDao carDao, DriverDao driverDao,
-                         CarTypeDao carTypeDao, CarMapper mapper)
+    public CarRepository(CarDao carDao, CarMapper mapper)
     {
         this.carDao = carDao;
-        this.driverDao = driverDao;
-        this.carTypeDao = carTypeDao;
         this.mapper = mapper;
     }
 
     public CarDto create(CarDto car)
     {
-        Car carEntity = new Car();
-        var driver = driverDao.findById(car.getDriverId());
-        var carType = carTypeDao.findById(car.getTypeId());
-        if (driver.isPresent())
-        {
-            carEntity.setCurrentDriver(driver.get());
-        }
-        if (carType.isPresent())
-        {
-            carEntity.setType(carType.get());
-        }
-        carEntity.setPlateNumber(car.getPlateNumber());
-        carEntity.setDescription(car.getDescription());
+        var carEntity = mapper.toEntity(car);
         carDao.save(carEntity);
         return mapper.toDto(carEntity);
     }
@@ -51,19 +31,8 @@ public class CarRepository implements org.example.repository.interfaces.CarRepos
         var optionalCar = carDao.findById(car.getId());
         if (optionalCar.isPresent())
         {
-            var carEntity = optionalCar.get();
-            var driver = driverDao.findById(car.getDriverId());
-            var carType = carTypeDao.findById(car.getTypeId());
-            if (driver.isPresent())
-            {
-                carEntity.setCurrentDriver(driver.get());
-            }
-            if (carType.isPresent())
-            {
-                carEntity.setType(carType.get());
-            }
-            carEntity.setPlateNumber(car.getPlateNumber());
-            carEntity.setDescription(car.getDescription());
+            var carEntity = mapper.toEntity(car);
+            carDao.save(carEntity);
         }
         return car;
     }
