@@ -4,8 +4,10 @@ import org.example.dto.DriverDto;
 import org.example.dto.OrderDto;
 import org.example.entity.Driver;
 import org.example.entity.Order;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
@@ -23,4 +25,12 @@ public interface OrderMapper {
     @Mapping(target = "driver.id", source = "driverId")
     @Mapping(target = "status.id", source = "statusId")
     Order toEntity(OrderDto orderDto);
+
+    @AfterMapping
+    default void toEntityAfterMapping(OrderDto source, @MappingTarget Order target) {
+        if (source.getDriverId() == null) {
+            target.setDriver(null);
+        }
+    }
+
 }

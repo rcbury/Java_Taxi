@@ -60,7 +60,7 @@
             (2,'driving to client'),
             (3,'driving to destination'),
             (4,'arrived to destination'),
-            (5,'cancelled');
+            (5,'cancelled'),
             (6,'driver arrived to client');
         </sql>
     </changeSet>
