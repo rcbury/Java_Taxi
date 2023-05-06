@@ -33,21 +33,25 @@ public class OrderController {
     @PostMapping
     @RequestMapping("/{orderId}/assignDriver")
     public OrderDto assignDriver(@PathVariable Long orderId, @RequestParam Long driverId) throws Exception {
-        var createdOrderDto = orderService.assignDriver(orderId, driverId);
+        var orderDto = orderService.assignDriver(orderId, driverId);
 
-        return createdOrderDto;
+        return orderDto;
     }
 
     @PostMapping
     @RequestMapping("/{orderId}/driverArrived")
-    public OrderDto driverArrived(@PathVariable Long orderId) {
-        return null;
+    public OrderDto driverArrived(@PathVariable Long orderId) throws Exception {
+        var orderDto = orderService.driverArrived(orderId);
+
+        return orderDto;
     }
 
     @PostMapping
     @RequestMapping("/{orderId}/startRide")
-    public OrderDto startRide(@PathVariable Long orderId) {
-        return null;
+    public OrderDto startRide(@PathVariable Long orderId) throws Exception {
+        var orderDto = orderService.startRide(orderId);
+
+        return orderDto;
     }
 
     @PostMapping
