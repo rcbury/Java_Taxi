@@ -1,6 +1,8 @@
 package org.example.service;
 
 import org.example.dto.DriverDto;
+import org.example.enums.DriverStatus;
+import org.example.enums.OrderStatus;
 import org.example.repository.interfaces.DriverRepository;
 import org.springframework.stereotype.Service;
 
@@ -34,15 +36,7 @@ public class DriverService {
 
     public List<DriverDto> getFreeDrivers()
     {
-        var allDrivers = repository.getAll();
-        var freeDrivers = new ArrayList<DriverDto>();
-        for (var driver : allDrivers)
-        {
-            if (driver.getStatusId() == 1)
-            {
-                freeDrivers.add(driver);
-            }
-        }
+        var freeDrivers = repository.findByStatusId(DriverStatus.AVAILABLE);
         return freeDrivers;
     }
 }

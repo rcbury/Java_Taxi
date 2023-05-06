@@ -5,6 +5,8 @@ import org.example.dao.DriverDao;
 import org.example.dao.DriverStatusDao;
 import org.example.dto.DriverDto;
 import org.example.entity.Driver;
+import org.example.enums.DriverStatus;
+import org.example.enums.OrderStatus;
 import org.example.mappers.DriverMapper;
 import org.springframework.stereotype.Repository;
 
@@ -90,6 +92,18 @@ public class DriverRepository implements org.example.repository.interfaces.Drive
             driverDtoList.add(mapper.toDto(driver));
         }
         return driverDtoList;
+    }
+
+    public List<DriverDto> findByStatusId(DriverStatus status) {
+        var listFreeDriver = driverDao.findByStatusId(status.getIndex());
+        var listFreeDriverDto = new ArrayList<DriverDto>();
+
+        for (var driver : listFreeDriver)
+        {
+            listFreeDriverDto.add(mapper.toDto(driver));
+        }
+
+        return listFreeDriverDto;
     }
 
     public void delete(Long id)
