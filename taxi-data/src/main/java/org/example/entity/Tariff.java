@@ -22,4 +22,7 @@ public class Tariff {
         joinColumns = @JoinColumn(name = "tariff_id"),
         inverseJoinColumns = @JoinColumn(name = "car_type_id"))
     private Set<CarType> carTypes;
+
+    @Column(name = "name")
+    private String name;
 }

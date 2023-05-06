@@ -1,0 +1,77 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet author="nikitabykov" id="06-05-2023-users-1">
+        <sql>
+            INSERT INTO public.users (id,email,first_name,last_name,username) VALUES
+            (1,'test@test.test','test_name','test_last_name','username'),
+            (2,'shapcev@mail.ru','valery','shapcev','shapcev'),
+            (3,'kurnosov@gmail.com','konstantin','kurnosov','kostolom');
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="06-05-2023-car-types-1">
+        <sql>
+            INSERT INTO public.car_types (id,"name") VALUES
+            (1,'sedan'),
+            (2,'universal'),
+            (3,'hatchback'),
+            (4,'coupe'),
+            (5,'gruzovoy');
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="06-05-2023-tariffs-1">
+        <sql>
+            INSERT INTO public.tariffs (id,price_multiplier,name) VALUES
+            (1,1.0,'econom'),
+            (2,1.5,'premium'),
+            (3,2.0,'gruzovoy');
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="06-05-2023-cars-1">
+        <sql>
+            INSERT INTO public.cars (id,description,plate_number,type_id) VALUES
+            (1,'shapcevmobil','a121aa',3),
+            (3,'lada kalina','x249ek',2),
+            (2,'kia rio','c154cc',1),
+            (4,'gazel','m667mm',5),
+            (5,'chevrolet camaro','c555kc',4);
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="06-05-2023-driver-statuses-1">
+        <sql>
+            INSERT INTO public.driver_statuses (id,"name") VALUES
+            (1,'available'),
+            (2,'taking order'),
+            (3,'not available');
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="06-05-2023-drivers-1">
+        <sql>
+            INSERT INTO public.drivers (id,license_number,"name",car_id,status_id) VALUES
+            (1,'3123123123','valeriy shapcev',1,1),
+            (2,'2222222222','gonshik',NULL,3),
+            (3,'33333333','mihailovskih roman',NULL,1);
+        </sql>
+    </changeSet>
+    <changeSet author="nikitabykov" id="06-05-2023-order-statuses-1">
+        <sql>
+            INSERT INTO public.order_statuses (id,"name") VALUES
+            (1,'looking for driver'),
+            (2,'driving to client'),
+            (3,'driving to destination'),
+            (4,'arrived to destination'),
+            (5,'cancelled');
+        </sql>
+    </changeSet>
+
+    <changeSet author="nikitabykov" id="06-05-2023-tariff-car-types-1">
+        <sql>
+            INSERT INTO public.tariff_car_types (tariff_id,car_type_id) VALUES
+            (1,1),
+            (1,3),
+            (2,2),
+            (2,4),
+            (3,5);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
