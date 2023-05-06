@@ -73,4 +73,25 @@ public class OrderService {
 
         return updatedOrder;
     }
+
+    public OrderDto endRide(Long orderId) throws Exception {
+        var existingOrder = orderRepository.getById(orderId);
+
+        existingOrder.setStatusId(5l);
+        existingOrder.setEndTime(new Date());
+
+        var updatedOrder = orderRepository.updateOrder(existingOrder);
+
+        return updatedOrder;
+    }
+
+    public OrderDto cancelRide(Long orderId) throws Exception {
+        var existingOrder = orderRepository.getById(orderId);
+
+        existingOrder.setStatusId(6l);
+
+        var updatedOrder = orderRepository.updateOrder(existingOrder);
+
+        return updatedOrder;
+    }
 }
