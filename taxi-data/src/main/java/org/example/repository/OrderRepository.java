@@ -8,8 +8,12 @@ import org.example.entity.Order;
 import org.example.mappers.OrderMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Repository
-public class OrderRepository {
+public class OrderRepository implements org.example.repository.interfaces.OrderRepository {
     private OrderDao orderDao;
     private OrderMapper orderMapper;
 
@@ -27,13 +31,28 @@ public class OrderRepository {
         return new OrderDto();
     }
 
-    public OrderDto create(OrderDto car)
+    public List<OrderDto> getAll()
     {
-        Car carEntity = new Car();
+        var orders = orderDao.findAll();
 
-        var orderEntity = orderMapper.toEntity(car);
+        var ordersDto = new ArrayList<OrderDto>();
+
+        for (var order :
+                orders) {
+            ordersDto.add(orderMapper.toDto(order));
+        }
+
+        return ordersDto;
+    }
+
+    public OrderDto createOrder(OrderDto orderDto)
+    {
+        var startDate = new Date();
+
+        var orderEntity = orderMapper.toEntity(orderDto);
 
         orderDao.save(orderEntity);
-        //return mapper.toDto(carEntity);
+        
+        return orderMapper.toDto(orderEntity);
     }
 }

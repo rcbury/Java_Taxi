@@ -11,7 +11,7 @@ public class OrderDto {
     public String startAddress;
     public Date startTime;
     public Date endTime;
-    public Long tarrifId;
+    public Long tariffId;
     public Long statusId;
     public Long driverId;
     public Long userId;
