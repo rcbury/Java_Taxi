@@ -15,4 +15,5 @@ public class OrderDto {
     private Long statusId;
     private Long driverId;
     private Long userId;
+    private double price;
 }

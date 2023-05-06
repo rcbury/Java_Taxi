@@ -8,7 +8,6 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 @RestController
 @RequestMapping("api/drivers")
 public class DriverController {
