@@ -10,6 +10,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
     OrderMapper INSTANCE = Mappers.getMapper( OrderMapper.class );
@@ -17,13 +19,20 @@ public interface OrderMapper {
     @Mapping(target = "userId", source = "user.id")
     @Mapping(target = "driverId", source = "driver.id")
     @Mapping(target = "statusId", source = "status.id")
-
     OrderDto toDto(Order order);
+
     @Mapping(target = "tariff.id", source = "tariffId")
     @Mapping(target = "user.id", source = "userId")
     @Mapping(target = "driver.id", source = "driverId")
     @Mapping(target = "status.id", source = "statusId")
     Order toEntity(OrderDto orderDto);
+
+
+    @Mapping(target = "tariffId", source = "tariff.id")
+    @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "driverId", source = "driver.id")
+    @Mapping(target = "statusId", source = "status.id")
+    List<OrderDto> toDtos(List<Order> cars);
 
     @AfterMapping
     default void toEntityAfterMapping(OrderDto source, @MappingTarget Order target) {

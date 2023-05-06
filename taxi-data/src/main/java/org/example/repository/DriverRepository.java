@@ -5,6 +5,7 @@ import org.example.dao.DriverDao;
 import org.example.dao.DriverStatusDao;
 import org.example.dto.DriverDto;
 import org.example.entity.Driver;
+import org.example.entity.Order;
 import org.example.enums.DriverStatus;
 import org.example.enums.OrderStatus;
 import org.example.mappers.DriverMapper;
@@ -85,13 +86,12 @@ public class DriverRepository implements org.example.repository.interfaces.Drive
 
     public List<DriverDto> getAll()
     {
-        var driverList = driverDao.findAll();
-        var driverDtoList = new ArrayList<DriverDto>();
-        for (var driver : driverList)
-        {
-            driverDtoList.add(mapper.toDto(driver));
-        }
-        return driverDtoList;
+        var drivers = driverDao.findAll();
+        var driverList = new ArrayList<Driver>();
+
+        driverList.forEach(driverList::add);
+
+        return mapper.toDtos(driverList);
     }
 
     public List<DriverDto> findByStatusId(DriverStatus status) {

@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.Exceptions.InvalidOrderOperationException;
 import org.example.dto.OrderDto;
 import org.example.service.OrderService;
 import org.springframework.http.HttpStatus;
@@ -65,8 +66,8 @@ public class OrderController {
     public OrderDto cancelRide(@PathVariable Long orderId) throws Exception {
         return orderService.cancelRide(orderId);
     }
-    @ExceptionHandler({Exception.class})
+    @ExceptionHandler({InvalidOrderOperationException.class})
     public void handleException(){
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "error");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid order operation exception");
     }
 }

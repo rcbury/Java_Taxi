@@ -81,13 +81,11 @@ public class CarRepository implements org.example.repository.interfaces.CarRepos
 
     public List<CarDto> getAll()
     {
-        var carList = carDao.findAll();
-        var carDtoList = new ArrayList<CarDto>();
-        for (var car : carList)
-        {
-            carDtoList.add(mapper.toDto(car));
-        }
-        return carDtoList;
+        var cars = carDao.findAll();
+        var carList = new ArrayList<Car>();
+        cars.forEach(carList::add);
+
+        return mapper.toDtos(carList);
     }
 
     public void delete(Long id)

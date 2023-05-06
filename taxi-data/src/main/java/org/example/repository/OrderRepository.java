@@ -36,14 +36,10 @@ public class OrderRepository implements org.example.repository.interfaces.OrderR
     {
         var orders = orderDao.findAll();
 
-        var ordersDto = new ArrayList<OrderDto>();
+        var orderList = new ArrayList<Order>();
+        orders.forEach(orderList::add);
 
-        for (var order :
-                orders) {
-            ordersDto.add(orderMapper.toDto(order));
-        }
-
-        return ordersDto;
+        return orderMapper.toDtos(orderList);
     }
 
     public OrderDto createOrder(OrderDto orderDto)
