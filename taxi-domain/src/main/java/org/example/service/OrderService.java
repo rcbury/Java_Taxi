@@ -12,7 +12,7 @@ import java.util.List;
 public class OrderService {
     OrderRepository orderRepository;
     DriverRepository driverRepository;
-    static final Long rubPerMinute = 2l;
+    static final Long rubPerMinute = 20l;
 
     public OrderService(OrderRepository orderRepository){
         this.orderRepository = orderRepository;
