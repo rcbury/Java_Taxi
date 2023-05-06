@@ -16,6 +16,7 @@ import java.util.List;
 public interface OrderMapper {
     OrderMapper INSTANCE = Mappers.getMapper( OrderMapper.class );
     @Mapping(target = "tariffId", source = "tariff.id")
+    @Mapping(target = "priceMultiplier", source = "tariff.price_multiplier")
     @Mapping(target = "userId", source = "user.id")
     @Mapping(target = "driverId", source = "driver.id")
     @Mapping(target = "statusId", source = "status.id")
