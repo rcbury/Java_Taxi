@@ -5,6 +5,7 @@ import org.example.repository.interfaces.DriverRepository;
 import org.example.repository.interfaces.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -61,6 +62,27 @@ public class OrderService {
         var existingOrder = orderRepository.getById(newOrder.getId());
 
         existingOrder.setStatusId(3l);
+
+        var updatedOrder = orderRepository.updateOrder(existingOrder);
+
+        return updatedOrder;
+    }
+
+    public OrderDto endRide(Long orderId) throws Exception {
+        var existingOrder = orderRepository.getById(orderId);
+
+        existingOrder.setStatusId(5l);
+        existingOrder.setEndTime(new Date());
+
+        var updatedOrder = orderRepository.updateOrder(existingOrder);
+
+        return updatedOrder;
+    }
+
+    public OrderDto cancelRide(Long orderId) throws Exception {
+        var existingOrder = orderRepository.getById(orderId);
+
+        existingOrder.setStatusId(6l);
 
         var updatedOrder = orderRepository.updateOrder(existingOrder);
 

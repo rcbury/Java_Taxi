@@ -52,14 +52,14 @@ public class OrderController {
 
     @PostMapping
     @RequestMapping("/{orderId}/endRide")
-    public OrderDto endRide(@PathVariable Long orderId) {
-        return null;
+    public OrderDto endRide(@PathVariable Long orderId) throws Exception {
+        return orderService.endRide(orderId);
     }
 
     @PostMapping
     @RequestMapping("/{orderId}/cancelRide")
-    public OrderDto cancelRide(@PathVariable Long orderId) {
-        return null;
+    public OrderDto cancelRide(@PathVariable Long orderId) throws Exception {
+        return orderService.cancelRide(orderId);
     }
     @ExceptionHandler({Exception.class})
     public void handleException(){
