@@ -27,4 +27,11 @@ public class OrderController {
 
         return createdOrderDto;
     }
+
+    @PostMapping
+    public OrderDto CreateOrder(@RequestBody OrderDto orderDto) {
+        var createdOrderDto = orderService.createOrder(orderDto);
+
+        return createdOrderDto;
+    }
 }
