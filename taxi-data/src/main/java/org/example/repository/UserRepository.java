@@ -41,23 +41,11 @@ public class UserRepository implements org.example.repository.interfaces.UserRep
         }
     }
 
-    public UserDto update(Long id, UserDto userUpdateDto) {
-        Optional<User> findUsers = userDao.findById(id);
+    public UserDto update(UserDto userUpdateDto) {
+        var userUpdate = mapper.toEntity(userUpdateDto);
 
-        if (findUsers.isPresent()) {
-            User findUser = findUsers.get();
-            User userUpdate = mapper.toEntity(userUpdateDto);
+        userDao.save(userUpdate);
 
-            findUser.setEmail(userUpdate.getEmail());
-            findUser.setFirstName(userUpdate.getFirstName());
-            findUser.setLastName(userUpdate.getLastName());
-            findUser.setOrders(userUpdate.getOrders());
-            findUser.setEmail(userUpdate.getEmail());
-            userDao.save(findUser);
-
-            return mapper.toDto(findUser);
-        } else {
-            return null;
-        }
+        return userUpdateDto;
     }
 }

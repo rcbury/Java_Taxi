@@ -40,8 +40,8 @@ public class UserController {
 
     @RequestMapping(value = "/{id}", method = PUT)
     @PutMapping
-    public UserDto putUser(@PathVariable("id") Long id, @RequestBody UserDto updateUser) {
-        UserDto response = userService.update(id, updateUser);
+    public UserDto putUser(@RequestBody UserDto updateUser) {
+        UserDto response = userService.update(updateUser);
 
         return response;
     }
