@@ -32,43 +32,18 @@ public class DriverRepository implements org.example.repository.interfaces.Drive
 
     public DriverDto create(DriverDto driverDto)
     {
-        Driver driverEntity = new Driver();
-        var car = carDao.findById(driverDto.getCarId());
-        var status = driverStatusDao.findById(driverDto.getStatusId());
-        if (car.isPresent())
-        {
-            driverEntity.setCar(car.get());
-        }
-        if (status.isPresent())
-        {
-            driverEntity.setStatus(status.get());
-        }
-        driverEntity.setLicenseNumber(driverDto.getLicenseNumber());
-        driverEntity.setName(driverDto.getName());
+        Driver driverEntity = mapper.toEntity(driverDto);
         driverDao.save(driverEntity);
         return mapper.toDto(driverEntity);
     }
 
     public DriverDto update(DriverDto driverDto)
     {
-        var driver = driverDao.findById(driverDto.getId());
-        if (driver.isPresent())
+        var optionalDriver = driverDao.findById(driverDto.getId());
+        if (optionalDriver.isPresent())
         {
-            var driverEntity = driver.get();
-            var car = carDao.findById(driverDto.getCarId());
-            var status = driverStatusDao.findById(driverDto.getStatusId());
-            if (car.isPresent())
-            {
-                driverEntity.setCar(car.get());
-            }
-            if (status.isPresent())
-            {
-                driverEntity.setStatus(status.get());
-            }
-            driverEntity.setLicenseNumber(driverDto.getLicenseNumber());
-            driverEntity.setName(driverDto.getName());
+            var driverEntity = mapper.toEntity(driverDto);
             driverDao.save(driverEntity);
-            return mapper.toDto(driverEntity);
         }
         return driverDto;
     }
@@ -96,14 +71,8 @@ public class DriverRepository implements org.example.repository.interfaces.Drive
 
     public List<DriverDto> findByStatusId(DriverStatus status) {
         var listFreeDriver = driverDao.findByStatusId(status.getIndex());
-        var listFreeDriverDto = new ArrayList<DriverDto>();
 
-        for (var driver : listFreeDriver)
-        {
-            listFreeDriverDto.add(mapper.toDto(driver));
-        }
-
-        return listFreeDriverDto;
+        return mapper.toDtos(listFreeDriver);
     }
 
     public void delete(Long id)
