@@ -2,6 +2,7 @@ package org.example.repository;
 
 import org.example.dao.CarDao;
 import org.example.dto.CarDto;
+import org.example.entity.Car;
 import org.example.mappers.CarMapper;
 import org.springframework.stereotype.Repository;
 

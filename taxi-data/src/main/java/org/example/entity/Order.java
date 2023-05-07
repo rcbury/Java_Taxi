@@ -25,19 +25,19 @@ public class Order {
     @Column(name = "end_time", nullable = true)
     private Date endTime;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name="tariff_id")
     private Tariff tariff;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name="status_id")
     private OrderStatus status;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name="driver_id", nullable = true)
     private Driver driver;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 

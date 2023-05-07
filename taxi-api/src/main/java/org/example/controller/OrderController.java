@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import lombok.AllArgsConstructor;
 import org.example.Exceptions.InvalidOrderOperationException;
 import org.example.dto.OrderDto;
 import org.example.service.OrderService;
@@ -12,12 +13,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/orders")
+@AllArgsConstructor
 public class OrderController {
     private OrderService orderService;
-
-    OrderController(OrderService orderService){
-        this.orderService = orderService;
-    }
 
     @GetMapping
     public List<OrderDto> getOrders(){
@@ -66,6 +64,7 @@ public class OrderController {
     public OrderDto cancelRide(@PathVariable Long orderId) throws Exception {
         return orderService.cancelRide(orderId);
     }
+
     @ExceptionHandler({InvalidOrderOperationException.class})
     public void handleException(){
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid order operation exception");
