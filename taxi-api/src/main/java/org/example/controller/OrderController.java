@@ -3,6 +3,7 @@ package org.example.controller;
 import lombok.AllArgsConstructor;
 import org.example.Exceptions.InvalidOrderOperationException;
 import org.example.dto.OrderDto;
+import org.example.dto.OrderInfoDto;
 import org.example.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,14 @@ public class OrderController {
     @RequestMapping("/{orderId}/assignDriver")
     public OrderDto assignDriver(@PathVariable Long orderId, @RequestParam Long driverId) throws Exception {
         var orderDto = orderService.assignDriver(orderId, driverId);
+
+        return orderDto;
+    }
+
+    @GetMapping
+    @RequestMapping("/{orderId}")
+    public OrderInfoDto getOrdedInfo(@PathVariable Long orderId) throws Exception {
+        var orderDto = orderService.getOrderInfo(orderId);
 
         return orderDto;
     }

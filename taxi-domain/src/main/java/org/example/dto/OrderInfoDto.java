@@ -5,16 +5,16 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class OrderDto {
+public class OrderInfoDto {
     private Long id;
     private String endAddress;
     private String startAddress;
     private Date startTime;
     private Date endTime;
-    private double priceMultiplier;
-    private Long tariffId;
-    private Long statusId;
-    private Long driverId;
-    private Long userId;
+    private TariffDto tariff;
+    private StatusDto status;
+    private DriverDto driver;
+    private CarDto car;
+    private UserDto user;
     private double price;
 }

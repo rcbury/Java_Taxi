@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface OrderDao extends CrudRepository<Order, Long> {
     List<Order> findByStatusIdAndDriverIdAndEndTime(Long statusId, Long driverId, Date endTime);
+    List<Order> findByStatusIdAndDriverIdAndEndTimeBetween(Long statusId, Long driverId, Date start, Date end);
+
 }

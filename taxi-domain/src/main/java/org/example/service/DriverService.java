@@ -62,7 +62,7 @@ public class DriverService {
     public double getSalary(Long driverId, Date endDate)
     {
         var orders = orderRepository.getFinishedOrders(driverId, endDate);
-        return getMoneyFromOrders(orders);
+        return getMoneyFromOrders(orders) * 0.5;
     }
 
     private double getMoneyFromOrders(List<OrderDto> orders)
