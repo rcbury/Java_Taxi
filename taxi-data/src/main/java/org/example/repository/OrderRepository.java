@@ -3,8 +3,10 @@ package org.example.repository;
 import lombok.AllArgsConstructor;
 import org.example.dao.*;
 import org.example.dto.OrderDto;
+import org.example.dto.OrderInfoDto;
 import org.example.entity.Order;
 import org.example.enums.OrderStatus;
+import org.example.mappers.OrderInfoMapper;
 import org.example.mappers.OrderMapper;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +19,7 @@ import java.util.List;
 public class OrderRepository implements org.example.repository.interfaces.OrderRepository {
     private OrderDao orderDao;
     private OrderMapper orderMapper;
+    private OrderInfoMapper orderInfoMapper;
     private DriverDao driverDao;
     private TariffDao tariffDao;
     private UserDao userDao;
@@ -29,6 +32,16 @@ public class OrderRepository implements org.example.repository.interfaces.OrderR
         }
 
         return orderMapper.toDto(order.get());
+    }
+
+    @Override
+    public OrderInfoDto getOrderInfo(Long id) throws Exception {
+        var order = orderDao.findById(id);
+        if (order.isEmpty()){
+            throw new Exception("not found");
+        }
+
+        return orderInfoMapper.toDto(order.get());
     }
 
     public List<OrderDto> getAll()
@@ -52,8 +65,8 @@ public class OrderRepository implements org.example.repository.interfaces.OrderR
 
     public List<OrderDto> getFinishedOrders(Long driverId, Date endDate)
     {
-        var orders = orderDao.findByStatusIdAndDriverIdAndEndTime(OrderStatus.ARRIVED_TO_DESTINATION.getIndex(),
-                driverId, endDate);
+        var orders = orderDao.findByStatusIdAndDriverIdAndEndTimeBetween(OrderStatus.ARRIVED_TO_DESTINATION.getIndex(),
+                driverId, endDate, new Date(endDate.getTime() + (1000 * 60 * 60 * 24)));
 
         var ordersDto = orderMapper.toDtos(orders);
 

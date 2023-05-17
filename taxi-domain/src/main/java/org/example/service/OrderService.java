@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.Exceptions.InvalidOrderOperationException;
 import org.example.dto.DriverDto;
 import org.example.dto.OrderDto;
+import org.example.dto.OrderInfoDto;
 import org.example.enums.DriverStatus;
 import org.example.enums.OrderStatus;
 import org.example.repository.interfaces.DriverRepository;
@@ -31,6 +32,12 @@ public class OrderService {
         var orders = orderRepository.getAll();
 
         return orders;
+    }
+
+    public OrderInfoDto getOrderInfo(long id) throws Exception{
+        var order = orderRepository.getOrderInfo(id);
+
+        return order;
     }
 
     public OrderDto createOrder(OrderDto orderDto){
